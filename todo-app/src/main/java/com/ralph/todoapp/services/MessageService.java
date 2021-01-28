@@ -2,11 +2,14 @@ package com.ralph.todoapp.services;
 
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.repository.MessageRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class MessageService {
 
@@ -22,8 +25,16 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
-    public String addMessage(Message message){
+    public Message addMessage(Message message){
+        log.info("In service: "+message.toString());
         messageRepository.save(message);
-        return "Saved Successfully";
+        return message;
     }
+    //TODO: Get message by Id
+//    public Optional<Message> getById(Long Id){
+//        if (messageRepository.findById(Id).isPresent()){
+//
+//        }
+//
+//    }
 }

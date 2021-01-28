@@ -2,28 +2,28 @@ package com.ralph.todoapp.controllers;
 
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.services.MessageService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Slf4j
+@AllArgsConstructor
 @RequestMapping(path = "/")
 @RestController
 public class MessageController {
 
     private final MessageService messageService;
 
-    @Autowired
-    public MessageController(MessageService messageService) {
-        this.messageService = messageService;
-    }
 
-    @PostMapping
-    public String addMessage(Message message){
+    @PostMapping("add_message/")
+    public Message addMessage(@RequestBody Message message){
+        log.info("controller side :"+message);
         return messageService.addMessage(message);
     }
 
-    @GetMapping
+    @GetMapping("get_messages/")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
     }

@@ -2,15 +2,23 @@ package com.ralph.todoapp.models;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
+@ToString
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table( name = "message")
 public class Message {
-    @JsonProperty("body")
-    private String body;
+
     @Id
     @SequenceGenerator(
             name = "messageSequence",
@@ -18,37 +26,17 @@ public class Message {
             allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String id;
+    private Long id;
+    private String Body;
+    @CreationTimestamp
+    private LocalDateTime created;
 
     public Message(String body) {
-        this.body = body;
-    }
-
-    protected Message() {
-
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "body='" + body + '\'' +
-                '}';
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    @Id
-    public String getId() {
-        return id;
+        this.Body = body;
     }
 }
+
+
+
+
+
