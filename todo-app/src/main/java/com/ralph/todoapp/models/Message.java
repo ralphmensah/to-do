@@ -28,11 +28,17 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String Body;
+
     @CreationTimestamp
     private LocalDateTime created;
 
+//    @ManyToOne()
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    private User user;
+
     public Message(String body) {
         this.Body = body;
+//        this.user = user;
     }
 }
 
