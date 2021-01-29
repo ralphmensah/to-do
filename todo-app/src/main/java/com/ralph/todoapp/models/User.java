@@ -14,22 +14,15 @@ import java.util.List;
 @Table(name = "user")
 public class User {
     @Id
-    @SequenceGenerator(
-            name = "userSequence",
-            sequenceName = "userSequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "userSequence")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long user_id;
 
     private String username;
     private String password;
 
-    @OneToMany()
-    @JoinColumn(name = "message_id", referencedColumnName = "id")
-    private List<Message> messages;
+//    @OneToMany()
+//    @JoinColumn(name = "id", referencedColumnName = "user_id")
+//    private List<Message> messages;
 
 
     public User(String username, String password) {
