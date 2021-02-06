@@ -1,6 +1,6 @@
 package com.ralph.todoapp.services;
 
-import com.ralph.todoapp.exception.MessageNotFoundException;
+import com.ralph.todoapp.exceptions.MessageNotFoundException;
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.repository.MessageRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -31,9 +31,20 @@ public class MessageService {
         messageRepository.save(message);
         return message;
     }
-    //TODO: Get message by Id
-    public Optional<Message> getById(Long id) throws MessageNotFoundException {
-        Optional<Message> getById = messageRepository.findById(id);
-        return Optional.of(getById.orElseThrow(() -> new MessageNotFoundException("Message Not Found"))) ;
+
+    public Message getMessagesById(Long id) throws MessageNotFoundException {
+        Optional<Message> messageById = messageRepository.findById(id);
+        if(messageById.isPresent()){
+            return messageById.get();
+        }else {
+            throw new MessageNotFoundException("Message Not Found");
+        }
     }
+    //TODO: Get message by Id
+//    public Optional<Message> getById(Long Id){
+//        if (messageRepository.findById(Id).isPresent()){
+//
+//        }
+//
+//    }
 }

@@ -8,13 +8,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Configuration
 public class config {
 
-//    @Bean
+    @Bean
     CommandLineRunner CommandLineRunner(MessageRepository repository, UserRepository userRepository) {
         return args -> {
             User u1 = new User("ralph","password");

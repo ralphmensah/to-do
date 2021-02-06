@@ -15,11 +15,18 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table( name = "message")
+@Table( name = "message_tb")
 public class Message {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "messageSequence",
+            sequenceName = "messageSequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE
+    )
     private Long id;
     private String Body;
 

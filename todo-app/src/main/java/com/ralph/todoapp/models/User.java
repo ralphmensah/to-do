@@ -1,34 +1,35 @@
 package com.ralph.todoapp.models;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user_tb")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long user_id;
-
+    @SequenceGenerator(
+            name = "userSequence",
+            sequenceName = "userSequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE
+    )
+    private Long id;
     private String username;
     private String password;
-
-//    @OneToMany()
-//    @JoinColumn(name = "id", referencedColumnName = "user_id")
-//    private List<Message> messages;
-
+    @CreationTimestamp
+    private LocalDateTime created;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
-    //    private Message message;
 }
