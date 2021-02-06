@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,8 +33,11 @@ public class Message {
 
     @CreationTimestamp
     private LocalDateTime created;
+    @UpdateTimestamp
+    private LocalDateTime Updated;
 
   //TODO: learn more about references with jpa
+
 //    @ManyToOne()
 //    @JoinTable(name = "id", foreignKey = "user_id")
 //    private User user;
