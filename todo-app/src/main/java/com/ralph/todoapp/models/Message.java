@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table( name = "message")
+@Table( name = "message_tb")
 public class Message {
 
     @Id

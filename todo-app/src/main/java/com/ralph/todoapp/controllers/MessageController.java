@@ -1,5 +1,6 @@
 package com.ralph.todoapp.controllers;
 
+import com.ralph.todoapp.exceptions.MessageNotFoundException;
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.services.MessageService;
 import lombok.AllArgsConstructor;
@@ -26,5 +27,10 @@ public class MessageController {
     @GetMapping("get_messages/")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
+    }
+
+    @GetMapping("get_message/{id}")
+    public Message getMessageById(@PathVariable Long id) throws MessageNotFoundException {
+        return messageService.getMessagesById(id);
     }
 }
