@@ -1,0 +1,3 @@
+[submodule "./todo-app-client"] 
+  path = ./todo-app-client
+  url = git: https://github.com/ralphmensah/todo-app-client.git//url-of-source/
