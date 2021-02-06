@@ -33,4 +33,8 @@ public class MessageController {
     public Message getMessageById(@PathVariable Long id) throws MessageNotFoundException {
         return messageService.getMessagesById(id);
     }
+    @PutMapping("update_message/{id}")
+    public Message updateMessage(@PathVariable Long id,@RequestBody Message message) throws MessageNotFoundException {
+        return messageService.updateMessage(id, message );
+    }
 }

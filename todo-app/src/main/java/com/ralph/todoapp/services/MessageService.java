@@ -31,7 +31,7 @@ public class MessageService {
         messageRepository.save(message);
         return message;
     }
-
+    //Get message by Id
     public Message getMessagesById(Long id) throws MessageNotFoundException {
         Optional<Message> messageById = messageRepository.findById(id);
         if(messageById.isPresent()){
@@ -40,7 +40,18 @@ public class MessageService {
             throw new MessageNotFoundException("Message Not Found");
         }
     }
-    //TODO: Get message by Id
+
+    public Message updateMessage(Long id, Message message) throws MessageNotFoundException {
+        Optional<Message> messageById = messageRepository.findById(id);
+        if(messageById.isPresent()){
+            Message msg_obj = messageById.get();
+            msg_obj.setBody(message.getBody());
+            return msg_obj;
+        }else {
+            throw new MessageNotFoundException("Message Not Found");
+        }
+    }
+
 //    public Optional<Message> getById(Long Id){
 //        if (messageRepository.findById(Id).isPresent()){
 //
