@@ -1,6 +1,7 @@
 package com.ralph.todoapp.controllers;
 
 import com.ralph.todoapp.exceptions.MessageNotFoundException;
+import com.ralph.todoapp.exceptions.UserNotFoundException;
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.services.MessageService;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,10 @@ public class MessageController {
     private final MessageService messageService;
 
 
-    @PostMapping("add_message/")
-    public Message addMessage(@RequestBody Message message){
+    @PostMapping("{user_id}/add_message/")
+    public Message addMessage(@PathVariable Long user_id,@RequestBody Message message) throws UserNotFoundException {
         log.info("controller side :"+message);
-        return messageService.addMessage(message);
+        return messageService.addMessage(user_id,message);
     }
 
     @GetMapping("get_messages/")
@@ -36,5 +37,9 @@ public class MessageController {
     @PutMapping("update_message/{id}")
     public Message updateMessage(@PathVariable Long id,@RequestBody Message message) throws MessageNotFoundException {
         return messageService.updateMessage(id, message );
+    }
+    @DeleteMapping("delete_message/{id}")
+    public Message deleteMessage(@PathVariable Long id) throws MessageNotFoundException {
+        return messageService.deleteMessage(id);
     }
 }

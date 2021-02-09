@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,8 +19,8 @@ public class config {
         return args -> {
             User u1 = new User("ralph","password");
 
-            Message m1 = new Message("Hello");
-            Message m2 = new Message("Hello How are you");
+            Message m1 = new Message("Hello",u1);
+            Message m2 = new Message("Hello How are you",u1);
 
 
             userRepository.save(u1);

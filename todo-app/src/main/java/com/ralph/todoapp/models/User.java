@@ -25,6 +25,10 @@ public class User {
     private Long id;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL)
+    private List<Message> messages;
     @CreationTimestamp
     private LocalDateTime created;
 

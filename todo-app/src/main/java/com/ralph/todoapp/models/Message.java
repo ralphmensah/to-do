@@ -31,6 +31,9 @@ public class Message {
     private Long id;
     private String Body;
 
+    @ManyToOne
+    private User user;
+
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
@@ -39,12 +42,12 @@ public class Message {
   //TODO: learn more about references with jpa
 
 //    @ManyToOne()
-//    @JoinTable(name = "id", foreignKey = "user_id")
+//
 //    private User user;
 
-    public Message(String body) {
+    public Message(String body,User user) {
         this.Body = body;
-//        this.user = user;
+        this.user = user;
     }
 }
 
