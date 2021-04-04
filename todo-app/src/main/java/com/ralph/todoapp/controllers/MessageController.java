@@ -1,6 +1,6 @@
 package com.ralph.todoapp.controllers;
 
-import com.ralph.todoapp.exceptions.MessageNotFoundException;
+import com.ralph.todoapp.exceptions.NotFoundException;
 import com.ralph.todoapp.models.Message;
 import com.ralph.todoapp.services.MessageService;
 import lombok.AllArgsConstructor;
@@ -27,19 +27,23 @@ public class MessageController {
     }
 
     @GetMapping("/get/{msg_id}")
-    public Message getMessageById(@PathVariable Long msg_id) throws MessageNotFoundException {
+    public Message getMessageById(@PathVariable Long msg_id) throws NotFoundException {
         return messageService.getMessageById(msg_id);
+    }
+    @GetMapping("/get/user/{user_id}")
+    public List<Message> getAllMessagesByUserID(@PathVariable Long user_id) throws NotFoundException {
+        return messageService.getAllMessagesByUserID(user_id);
     }
 
     //Update
     @PutMapping("/update/{id}")
-    public Message updateMsg(@PathVariable Long id, @RequestBody Message message) throws MessageNotFoundException {
+    public Message updateMsg(@PathVariable Long id, @RequestBody Message message) throws NotFoundException {
         return messageService.updateMsg(id,message);
 
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteMsg(@PathVariable Long id) throws MessageNotFoundException {
+    public void deleteMsg(@PathVariable Long id) throws NotFoundException {
         messageService.deleteMsg(id);
     }
 
