@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/msg")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MessageController {
     private final MessageService messageService;
 
@@ -20,7 +21,7 @@ public class MessageController {
         return messageService.addMessage(message);
     }
 
-//    read
+    //get msges
     @GetMapping("/getAll")
     public List<Message> getAllMessages(){
         return messageService.getAllMessages();
@@ -30,21 +31,17 @@ public class MessageController {
     public Message getMessageById(@PathVariable Long msg_id) throws NotFoundException {
         return messageService.getMessageById(msg_id);
     }
-    @GetMapping("/get/user/{user_id}")
-    public List<Message> getAllMessagesByUserID(@PathVariable Long user_id) throws NotFoundException {
-        return messageService.getAllMessagesByUserID(user_id);
-    }
 
     //Update
-    @PutMapping("/update/{id}")
-    public Message updateMsg(@PathVariable Long id, @RequestBody Message message) throws NotFoundException {
-        return messageService.updateMsg(id,message);
+    @PutMapping("/update/{message_id}")
+    public Message updateMsg(@PathVariable Long message_id, @RequestBody Message message) throws NotFoundException {
+        return messageService.updateMsg(message_id,message);
 
     }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteMsg(@PathVariable Long id) throws NotFoundException {
-        messageService.deleteMsg(id);
+    //delete msg
+    @DeleteMapping("/delete/{message_id}")
+    public void deleteMsg(@PathVariable Long message_id) throws NotFoundException {
+        messageService.deleteMsg(message_id);
     }
 
 }

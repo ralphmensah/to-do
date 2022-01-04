@@ -19,8 +19,8 @@ public class config {
         return args -> {
             User user =  new User("r@m.com","password");
 
-            Message m1 = new Message(user,"Hello");
-            Message m2 = new Message(user,"Hello How are you");
+            Message m1 = new Message("Hello");
+            Message m2 = new Message("Hello How are you");
 
 //            userRepository.save(user);
             repository.saveAll(List.of(m1,m2));

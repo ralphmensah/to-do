@@ -1,19 +1,15 @@
 package com.ralph.todoapp.models;
 
 
-import com.fasterxml.jackson.annotation.*;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.web.servlet.View;
 
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+
 @NoArgsConstructor
 @Entity
 @Table
@@ -22,26 +18,55 @@ public class Message {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Long id;
-
-    @JsonProperty("user_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    @Lazy
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User userID;
     private String msg;
+    private Boolean is_done;
     @CreationTimestamp
-    private LocalDateTime created;
+    private LocalDateTime date_created;
     @UpdateTimestamp
-    private LocalDateTime updated;
+    private LocalDateTime date_updated;
 
     public Message(String msg) {
         this.msg = msg;
+        this.is_done = Boolean.FALSE;
     }
 
-    public Message(User userID, String msg) {
-        this.userID = userID;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Boolean getDone() {
+        return is_done;
+    }
+
+    public void setDone(Boolean done) {
+        is_done = done;
+    }
+
+    public LocalDateTime getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(LocalDateTime date_created) {
+        this.date_created = date_created;
+    }
+
+    public LocalDateTime getDate_updated() {
+        return date_updated;
+    }
+
+    public void setDate_updated(LocalDateTime date_updated) {
+        this.date_updated = date_updated;
     }
 }

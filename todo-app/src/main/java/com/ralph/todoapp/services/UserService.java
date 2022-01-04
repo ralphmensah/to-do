@@ -23,10 +23,4 @@ public class UserService {
     public User getById(Long id) throws NotFoundException {
         return userRepository.findById(id).orElseThrow(()-> new NotFoundException("User Not Found"));
     }
-
-    public User getUserByMsg(Long msgId) throws NotFoundException {
-        Message msg_Obj = messageService.getMessageById(msgId);
-        Long UserID = msg_Obj.getUserID().getId();
-        return userRepository.findById(UserID).orElseThrow(()-> new NotFoundException("User Not Found"));
-    }
 }

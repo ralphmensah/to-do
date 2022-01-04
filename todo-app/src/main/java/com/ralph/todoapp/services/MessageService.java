@@ -23,12 +23,14 @@ public class MessageService {
     }
 
     public Message addMessage(Message message) {
+        message.setDone(false);
         return messageRepository.save(message);
     }
 
     public Message updateMsg(Long id, Message message) throws NotFoundException {
         Message updateObj = messageRepository.findById(id).orElseThrow(()-> new NotFoundException("Message Not Found"));
         updateObj.setMsg(message.getMsg());
+        updateObj.setDone(message.getDone());
 
         return messageRepository.save(updateObj);
     }
@@ -36,8 +38,5 @@ public class MessageService {
     public void deleteMsg(Long id) throws NotFoundException {
         Message msgObj = messageRepository.findById(id).orElseThrow(()-> new NotFoundException("Message Not Found"));
         messageRepository.delete(msgObj);
-    }
-    public List<Message> getAllMessagesByUserID(Long userId){
-        return messageRepository.findAllMessagesByUserId(userId);
     }
 }
