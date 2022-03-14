@@ -1,5 +1,5 @@
 # To-Do Application
-This is a Simple Backend  for sending [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) services, built with Spring Boot for my [Angular Front End](https://github.com/ralphmensah/todo-app-client).
+This is a Simple Backend  for sending [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) services, built with Spring Boot for my [react](https://github.com/ralphmensah/todo-app-client).
 
 
 ## Usage
